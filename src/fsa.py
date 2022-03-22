@@ -10,6 +10,7 @@ class FiniteStateAutomata:
             content = fsa_file.readline()
         self.tokens = content.split(';')
 
+    # temporary testing function
     def show_tokens(self):
         for i in range(0,len(self.tokens)-1):
             print('token - ' + self.tokens[i])
