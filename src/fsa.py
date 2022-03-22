@@ -1,22 +1,21 @@
 import sys
 
-class FSA:
-    def __init__(self, fsa_def_file_name):
-        self.fsa_tokens = []
-        self.fsa_def_file_name = fsa_def_file_name
-        self.read()
+class FiniteStateAutomata:
+    def __init__(self, def_file_name, string_file_name):
+        self.tokens = []
+        self.read_def_file(def_file_name)
 
-    def read(self):
-        with open(self.fsa_def_file_name) as fsa_file:
+    def read_def_file(self, def_file_name):
+        with open(def_file_name) as fsa_file:
             content = fsa_file.readline()
-        print('the FSA: ' + content)
-        global tokens
-        tokens = content.split(';')
+        self.tokens = content.split(';')
 
     def show_tokens(self):
-        for i in range(0,len(tokens)-1):
-            print('token - ' + tokens[i])
+        for i in range(0,len(self.tokens)-1):
+            print('token - ' + self.tokens[i])
 
 fsa_def_file_name = sys.argv[1]
-fsa = FSA(fsa_def_file_name)
+fsa_string_file_name = sys.argv[2]
+
+fsa = FiniteStateAutomata(fsa_def_file_name, fsa_string_file_name)
 fsa.show_tokens()
