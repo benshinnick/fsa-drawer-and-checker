@@ -15,6 +15,4 @@ class Transition:
         return self.fromStateNum
 
     def __str__(self):
-        return "(" + str(self.fromStateNum) + ":" + str(self.toStateNum) + ":" + str(self.character) + ")"
-
-    
+        return "(" + str(self.fromStateNum) + ":" + str(self.toStateNum) + ":" + str(self.character) + ")" 

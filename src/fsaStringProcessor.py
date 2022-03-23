@@ -30,7 +30,3 @@ class FsaStringProcessor:
 
     def is_curr_state_accept_state(self):
         return self.states[self.curr_state_num].is_accept_state()
-
-    # 12345
-
-
