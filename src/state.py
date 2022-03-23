@@ -1,6 +1,3 @@
-from operator import truediv
-
-
 class State:  
 
     def __init__(self, num):

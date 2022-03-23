@@ -52,10 +52,15 @@ class FiniteStateAutomata:
     def process_string(self, str_file_name):
         with open(str_file_name) as str_file:
             string = str_file.readline()
-        str_processor = FsaStringProcessor(string, self.states, self.num_states, self.start_state)
-        is_legal_str = str_processor.is_legal_str()
+        print('Processing: \'' + string + '\'')
+        is_legal_str = self.check_string(string)
         if is_legal_str: print('Success: \'' + string + '\' is legal')
         else: print('Failure: \'' + string + '\' is not legal')
+
+    def check_string(self, string):
+        str_processor = FsaStringProcessor(string, self.states, self.num_states, self.start_state)
+        return str_processor.is_legal_str()
+
 
 fsa_def_file_name = sys.argv[1]
 fsa_str_file_name = sys.argv[2]
