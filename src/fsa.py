@@ -1,9 +1,9 @@
 import sys
 
-from fsaStringProcessor import FsaStringProcessor
-from fsaGuiProcessor import FsaGuiProcessor
-from state import State
-from transition import Transition
+from .fsaStringProcessor import FsaStringProcessor
+from .fsaGuiProcessor import FsaGuiProcessor
+from .state import State
+from .transition import Transition
 
 class FiniteStateAutomata:
 
