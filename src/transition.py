@@ -1,20 +1,20 @@
 class Transition:
 
-    def __init__(self, toStateNum, character):
-        self.toStateNum = toStateNum
+    def __init__(self, fromStateNum, toStateNum, character):
+        self.fromStateNum = int(fromStateNum)
+        self.toStateNum = int(toStateNum)
         self.character = character
-        self.is_accept = False
-
-    def set_to_accept(self):
-        self.is_accept = True
-
-    def is_accept(self):
-        return self.is_accept
 
     def get_char(self):
         return self.character
     
     def get_to_state_num(self):
         return self.toStateNum
+
+    def get_from_state_num(self):
+        return self.fromStateNum
+
+    def __str__(self):
+        return "from = " + str(self.fromStateNum) + " to = " + str(self.toStateNum) + " char = " + str(self.character)
 
     
