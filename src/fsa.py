@@ -31,9 +31,9 @@ class FiniteStateAutomata:
             for j in range(0, len(transitions)):
                 if transitions[j].get_from_state_num() == i:
                     states[i].addTransition(transitions[j])
-        states[startState].set_to_start()
+        states[startState].set_is_start(True)
         for i in range(0, len(acceptStates)):
-            states[int(acceptStates[i])].set_to_accept()
+            states[int(acceptStates[i])].set_is_accept(True)
         return states
 
     def _create_transitions_from_tansition_data(self, transitionData):
@@ -46,6 +46,7 @@ class FiniteStateAutomata:
         return transitions
 
     def show_states(self):
+        print("States:")
         for i in range(0,len(self.states)):
             print(str(self.states[i]))
 
