@@ -29,7 +29,7 @@ class FiniteStateAutomata:
             states.append(State(i))
             for j in range(0, len(transitions)):
                 if transitions[j].get_from_state_num() == i:
-                    states[i].addTransition(transitions[j])
+                    states[i].add_transition(transitions[j])
         states[self.start_state].set_is_start(True)
         for i in range(0, len(acceptStates)):
             states[int(acceptStates[i])].set_is_accept(True)

@@ -21,7 +21,7 @@ class State:
             if(self.transitions[i].get_char == char):
                 return self.transitions[i].get_to_state_num()
     
-    def addTransition(self, transition):
+    def add_transition(self, transition):
         self.transitions.append(transition)
 
     def set_is_start(self, is_start):
