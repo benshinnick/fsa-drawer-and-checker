@@ -1,11 +1,12 @@
 import sys
 
 class FiniteStateAutomata:
+
     def __init__(self, def_file_name, string_file_name):
         self.tokens = []
-        self.read_def_file(def_file_name)
+        self._read_def_file(def_file_name)
 
-    def read_def_file(self, def_file_name):
+    def _read_def_file(self, def_file_name):
         with open(def_file_name) as fsa_file:
             content = fsa_file.readline()
         self.tokens = content.split(';')
