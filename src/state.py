@@ -10,6 +10,7 @@ class State:
         self.is_accept = False
 
     def is_legal_transition(self, char):
+        if(len(self.transitions) == 0): return False
         for i in range(0,len(self.transitions)):
             if(self.transitions[i].get_char == char): return True
         return False

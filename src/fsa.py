@@ -9,7 +9,8 @@ class FiniteStateAutomata:
 
     def __init__(self, def_file_name):
         tokens = self._get_tokens_from_def_file(def_file_name)
-        self.numStates = int(tokens[0])
+        self.num_states = int(tokens[0])
+        self.start_state = int(tokens[3])
         self.states = self._create_states_from_tokens(tokens)
 
     def _get_tokens_from_def_file(self, def_file_name):
@@ -20,17 +21,16 @@ class FiniteStateAutomata:
 
     def _create_states_from_tokens(self, tokens):
         transitionData = tokens[2].split(',')
-        startState = int(tokens[3])
         acceptStates = tokens[4].split(',')
         transitions = self._create_transitions_from_tansition_data(transitionData)
 
         states = []
-        for i in range(0,self.numStates):
+        for i in range(0,self.num_states):
             states.append(State(i))
             for j in range(0, len(transitions)):
                 if transitions[j].get_from_state_num() == i:
                     states[i].addTransition(transitions[j])
-        states[startState].set_is_start(True)
+        states[self.start_state].set_is_start(True)
         for i in range(0, len(acceptStates)):
             states[int(acceptStates[i])].set_is_accept(True)
         return states
@@ -52,7 +52,7 @@ class FiniteStateAutomata:
     def process_string(self, str_file_name):
         with open(str_file_name) as str_file:
             string = str_file.readline()
-        str_processor = FsaStringProcessor(string, self.states, self.numStates)
+        str_processor = FsaStringProcessor(string, self.states, self.num_states, self.start_state)
         is_legal_str = str_processor.is_legal_str()
         if is_legal_str: print('Success: \'' + string + '\' is legal')
         else: print('Failure: \'' + string + '\' is not legal')
