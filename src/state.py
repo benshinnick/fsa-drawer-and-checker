@@ -47,5 +47,6 @@ class State:
         if(self.is_accept): stateStr += " [is_accept]"
         stateStr += " transitions = "
         for i in range(0,len(self.transitions)):
-            stateStr += "[" + str(self.transitions[i]) + "]"
+            stateStr += str(self.transitions[i])
+            if(i != len(self.transitions) - 1): stateStr += ","
         return stateStr
