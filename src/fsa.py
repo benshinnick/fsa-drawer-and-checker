@@ -9,7 +9,7 @@ class FiniteStateAutomata:
 
     def __init__(self, def_file_name):
         tokens = self._get_tokens_from_def_file(def_file_name)
-        self.show_tokens(tokens)
+        self.numStates = int(tokens[0])
         self.states = self._create_states_from_tokens(tokens)
 
     def _get_tokens_from_def_file(self, def_file_name):
@@ -19,14 +19,13 @@ class FiniteStateAutomata:
         return tokens
 
     def _create_states_from_tokens(self, tokens):
-        numStates = int(tokens[0])
         transitionData = tokens[2].split(',')
         startState = int(tokens[3])
         acceptStates = tokens[4].split(',')
         transitions = self._create_transitions_from_tansition_data(transitionData)
 
         states = []
-        for i in range(0,numStates):
+        for i in range(0,self.numStates):
             states.append(State(i))
             for j in range(0, len(transitions)):
                 if transitions[j].get_from_state_num() == i:
@@ -39,10 +38,10 @@ class FiniteStateAutomata:
     def _create_transitions_from_tansition_data(self, transitionData):
         transitions = []
         for i in range(0, len(transitionData)):
-            fromStateNum = transitionData[i][1]
-            toStateNum = transitionData[i][3]
+            from_state_num = transitionData[i][1]
+            to_state_num = transitionData[i][3]
             character = transitionData[i][5]
-            transitions.append(Transition(fromStateNum, toStateNum, character))
+            transitions.append(Transition(from_state_num, to_state_num, character))
         return transitions
 
     def show_states(self):
@@ -50,17 +49,17 @@ class FiniteStateAutomata:
         for i in range(0,len(self.states)):
             print(str(self.states[i]))
 
-    def process_string(self):
-        strProcessor = FsaStringProcessor()
-        pass
-
-    # temporary testing function
-    def show_tokens(self, tokens):
-        for i in range(0,len(tokens)-1):
-            print('token - ' + tokens[i])
+    def process_string(self, str_file_name):
+        with open(str_file_name) as str_file:
+            string = str_file.readline()
+        str_processor = FsaStringProcessor(string, self.states, self.numStates)
+        is_legal_str = str_processor.is_legal_str()
+        if is_legal_str: print('Success: \'' + string + '\' is legal')
+        else: print('Failure: \'' + string + '\' is not legal')
 
 fsa_def_file_name = sys.argv[1]
-fsa_string_file_name = sys.argv[2]
+fsa_str_file_name = sys.argv[2]
 
 fsa = FiniteStateAutomata(fsa_def_file_name)
 fsa.show_states()
+fsa.process_string(fsa_str_file_name)
