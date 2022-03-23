@@ -12,13 +12,13 @@ class State:
     def is_legal_transition(self, char):
         if(len(self.transitions) == 0): return False
         for i in range(0,len(self.transitions)):
-            if(self.transitions[i].get_char == char): return True
+            if(self.transitions[i].get_char() == char): return True
         return False
 
-    def next_state(self, char):
+    def get_next_state(self, char):
         if not self.is_legal_transition(char): return -1
         for i in range(0,len(self.transitions)):
-            if(self.transitions[i].get_char == char):
+            if(self.transitions[i].get_char() == char):
                 return self.transitions[i].get_to_state_num()
     
     def add_transition(self, transition):
@@ -33,13 +33,13 @@ class State:
     def get_state_num(self):
         return self.num
 
-    def is_start(self):
+    def is_start_state(self):
         return self.is_start
 
     def set_is_accept(self, is_accept):
         self.is_accept = is_accept
 
-    def is_accept(self):
+    def is_accept_state(self):
         return self.is_accept
 
     def __str__(self):
