@@ -10,7 +10,6 @@ class FsaStringProcessor:
     def is_legal_str(self):
         num_chars = len(self.string)
         for i in range(0,num_chars - 1):
-            print("On state", self.curr_state_num, "Next char", self.string[self.curr_char_idx + 1])
             if not self.is_legal_next_char(): return False
             self.update_curr_state()
             self.update_curr_char()
