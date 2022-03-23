@@ -61,6 +61,9 @@ class FiniteStateAutomata:
         str_processor = FsaStringProcessor(string, self.states, self.num_states, self.start_state)
         return str_processor.is_legal_str()
 
+    def process_gui(self):
+        gui_processor = FsaGuiProcessor(self.states, self.num_states, self.start_state)
+        gui_processor.create_and_show_gui()
 
 fsa_def_file_name = sys.argv[1]
 fsa_str_file_name = sys.argv[2]
@@ -68,3 +71,4 @@ fsa_str_file_name = sys.argv[2]
 fsa = FiniteStateAutomata(fsa_def_file_name)
 # fsa.show_states()
 fsa.process_string(fsa_str_file_name)
+fsa.process_gui()
