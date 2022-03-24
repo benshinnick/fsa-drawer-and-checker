@@ -17,18 +17,25 @@ class State:
         for i in range(0,len(self.transitions)):
             if(self.transitions[i].get_char() == char):
                 return self.transitions[i].get_to_state_num()
+
+    def get_num_of_back_transitions(self):
+        num_back_transitions = 0
+        for i in range(0,len(self.transitions)):
+            if self.transitions[i].is_back_transition():
+                num_back_transitions += 1
+        return num_back_transitions
     
     def add_transition(self, transition):
         self.transitions.append(transition)
-
-    def set_is_start(self, is_start):
-        self.is_start = is_start
 
     def set_state_num(self, num):
         self.num = num
 
     def get_state_num(self):
         return self.num
+
+    def set_is_start(self, is_start):
+        self.is_start = is_start
 
     def is_start_state(self):
         return self.is_start
@@ -38,6 +45,12 @@ class State:
 
     def is_accept_state(self):
         return self.is_accept
+
+    def get_transition(self, transition_idx):
+        return self.transitions[transition_idx]
+
+    def get_num_transitions(self):
+        return len(self.transitions)
 
     def __str__(self):
         stateStr = "num = " + str(self.num)

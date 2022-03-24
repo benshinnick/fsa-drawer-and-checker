@@ -13,15 +13,15 @@ class Transition:
 
     def get_from_state_num(self):
         return self.fromStateNum
+
+    def is_self_transition(self):
+        return self.toStateNum == self.fromStateNum
     
     def is_forward_transition(self):
         return self.toStateNum > self.fromStateNum
 
     def is_back_transition(self):
         return self.toStateNum < self.fromStateNum
-
-    def is_self_transition(self):
-        return self.toStateNum == self.fromStateNum
 
     def __str__(self):
         return "(" + str(self.fromStateNum) + ":" + str(self.toStateNum) + ":" + str(self.character) + ")" 
