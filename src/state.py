@@ -52,24 +52,6 @@ class State:
     def get_num_transitions(self):
         return len(self.transitions)
 
-    # def has_self_transition(self):
-    #     if(len(self.transitions) == 0): return False
-    #     for i in range(0,len(self.transitions)):
-    #         if self.transitions[i].is_self_transition(): return True
-    #     return False
-
-    # def has_back_transition(self):
-    #     if(len(self.transitions) == 0): return False
-    #     for i in range(0,len(self.transitions)):
-    #         if self.transitions[i].is_back_transition(): return True
-    #     return False
-
-    # def has_forward_transition(self):
-    #     if(len(self.transitions) == 0): return False
-    #     for i in range(0,len(self.transitions)):
-    #         if self.transitions[i].is_forward_transition(): return True
-    #     return False
-
     def __str__(self):
         stateStr = "num = " + str(self.num)
         if(self.is_start): stateStr += " [is_start]"

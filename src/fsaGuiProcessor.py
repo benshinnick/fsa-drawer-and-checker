@@ -31,6 +31,8 @@ class FsaGuiProcessor:
         self.draw_state(state_num)
 
     def draw_all_state_transitions(self, state_num):
+        if self.states[state_num].is_start_state():
+            self._draw_start_state_transition(state_num)
         for i in range(0, self.states[state_num].get_num_transitions()):
             curr_transition = self.states[state_num].get_transition(i)
             if curr_transition.is_self_transition():
@@ -57,6 +59,11 @@ class FsaGuiProcessor:
         self._create_circle(x, y, self.STATE_CIR_RAD)
         self._create_circle(x, y, self.STATE_CIR_RAD - 3)
         self.canvas.pack()
+
+    def _draw_start_state_transition(self, state_num):
+        state_coord = self._get_state_center_coord(state_num)
+        x, y = state_coord[0] - 15, state_coord[1] - 15
+        self._create_arrow(x-24, y-25, x, y)
 
     def _draw_self_transition(self, transition):
         state_coord = self._get_state_center_coord(transition.get_from_state_num())
@@ -111,7 +118,7 @@ class FsaGuiProcessor:
         return 300 + (self._get_num_of_back_transitions() * 35)
     
     def _get_canvas_height(self):
-        return 50 + (self.num_states * 75)
+        return 10 + (self.num_states * 75)
 
     def _get_num_of_back_transitions(self):
         back_total = 0
