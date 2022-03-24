@@ -1,9 +1,9 @@
 import sys
 
-from .fsaStringProcessor import FsaStringProcessor
-from .fsaGuiProcessor import FsaGuiProcessor
-from .state import State
-from .transition import Transition
+from fsaStringProcessor import FsaStringProcessor
+from fsaGuiProcessor import FsaGuiProcessor
+from state import State
+from transition import Transition
 
 class FiniteStateAutomata:
 
@@ -69,6 +69,6 @@ fsa_def_file_name = sys.argv[1]
 fsa_str_file_name = sys.argv[2]
 
 fsa = FiniteStateAutomata(fsa_def_file_name)
-# fsa.show_states()
+fsa.show_states()
 fsa.process_string(fsa_str_file_name)
 fsa.process_gui()
