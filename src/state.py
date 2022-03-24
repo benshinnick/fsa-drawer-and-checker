@@ -28,14 +28,14 @@ class State:
     def add_transition(self, transition):
         self.transitions.append(transition)
 
-    def set_is_start(self, is_start):
-        self.is_start = is_start
-
     def set_state_num(self, num):
         self.num = num
 
     def get_state_num(self):
         return self.num
+
+    def set_is_start(self, is_start):
+        self.is_start = is_start
 
     def is_start_state(self):
         return self.is_start
@@ -45,6 +45,30 @@ class State:
 
     def is_accept_state(self):
         return self.is_accept
+
+    def get_transition(self, transition_idx):
+        return self.transitions[transition_idx]
+
+    def get_num_transitions(self):
+        return len(self.transitions)
+
+    # def has_self_transition(self):
+    #     if(len(self.transitions) == 0): return False
+    #     for i in range(0,len(self.transitions)):
+    #         if self.transitions[i].is_self_transition(): return True
+    #     return False
+
+    # def has_back_transition(self):
+    #     if(len(self.transitions) == 0): return False
+    #     for i in range(0,len(self.transitions)):
+    #         if self.transitions[i].is_back_transition(): return True
+    #     return False
+
+    # def has_forward_transition(self):
+    #     if(len(self.transitions) == 0): return False
+    #     for i in range(0,len(self.transitions)):
+    #         if self.transitions[i].is_forward_transition(): return True
+    #     return False
 
     def __str__(self):
         stateStr = "num = " + str(self.num)
