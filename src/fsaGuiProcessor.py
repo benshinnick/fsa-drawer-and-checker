@@ -9,6 +9,7 @@ class FsaGuiProcessor:
         self.num_states = num_states
         self.start_state = start_state
         self.num_back_transitions_processes = 0
+        self.num_forward_jump_transition_processes = 0
 
         self.root = tk.Tk()
         self.canvas = self._create_canvas()
@@ -94,6 +95,17 @@ class FsaGuiProcessor:
         if(transition.get_to_state_num() == transition.get_from_state_num() + 1):
             self._create_arrow(x, y, x, y + 30)
             self._create_text(x - 8, y + 10, transition.get_char())
+        else: #forward jump case
+            to_state_coord = self._get_state_center_coord(transition.get_to_state_num())
+            from_x, from_y = x, y
+            to_x, to_y = to_state_coord[0] + 25, to_state_coord[1]
+            forward_line_x = to_x + ((self.num_forward_jump_transition_processes + 1) * 30) + 15
+            self._create_line(from_x, from_y, forward_line_x, from_y + 30)
+            self._create_line(forward_line_x, from_y + 30, forward_line_x, to_y - 50)
+            self._create_arrow(forward_line_x, to_y - 50, to_x - 23, to_y - 22)
+            self._create_text(forward_line_x + 7, (from_y+30+to_y-50)/2, transition.get_char())
+
+            self.num_forward_jump_transition_processes += 1
 
     def _create_circle(self, x, y, r):
         x0, y0 = x - r, y - r
